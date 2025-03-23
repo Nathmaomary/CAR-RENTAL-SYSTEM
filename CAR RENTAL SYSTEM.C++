@@ -359,6 +359,27 @@ int main() {
 
     return 0;
 }
+// Rental.cpp
+#include "Rental.h"
+#include <iostream>
+
+void Rental::listAvailableCars() const {
+    std::cout << "Available cars:\n";
+    bool availableCarsFound = false;
+    for (size_t i = 0; i < cars.size(); i++) {
+        if (cars[i].getAvailability()) {
+            std::cout << "Car #" << i + 1 << ": " 
+                      << cars[i].getMake() << " " 
+                      << cars[i].getModel() << " (" 
+                      << cars[i].getYear() << ")\n";
+            availableCarsFound = true;
+        }
+    }
+    if (!availableCarsFound) {
+        std::cout << "No available cars at the moment.\n";
+    }
+}
+
 
 
 
