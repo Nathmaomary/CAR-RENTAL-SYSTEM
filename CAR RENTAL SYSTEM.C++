@@ -30,3 +30,30 @@ public:
 
 #endif
 
+// Car.cpp
+#include "Car.h"
+
+Car::Car(std::string make, std::string model, int year) 
+    : make(make), model(model), year(year), isAvailable(true) {}
+
+std::string Car::getMake() const {
+    return make;
+}
+
+std::string Car::getModel() const {
+    return model;
+}
+
+int Car::getYear() const {
+    return year;
+}
+
+bool Car::getAvailability() const {
+    return isAvailable;
+}
+
+void Car::setAvailability(bool availability) {
+    isAvailable = availability;
+}
+
+
