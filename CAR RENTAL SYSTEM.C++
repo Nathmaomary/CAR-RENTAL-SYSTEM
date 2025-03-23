@@ -136,6 +136,39 @@ int main() {
 
     return 0;
 }
+// main.cpp
+#include <iostream>
+#include "Car.h"
+#include "Rental.h"
+
+int main() {
+    Rental rental("John Doe");
+
+    Car car1("Toyota", "Corolla", 2020);
+    Car car2("Honda", "Civic", 2021);
+
+    rental.addCarToInventory(car1);
+    rental.addCarToInventory(car2);
+
+    rental.listAvailableCars();
+
+    int carToRent;
+    std::cout << "Enter the car number to rent: ";
+    std::cin >> carToRent;
+    rental.rentCar(carToRent - 1);
+
+    rental.listAvailableCars();
+
+    int carToReturn;
+    std::cout << "Enter the car number to return: ";
+    std::cin >> carToReturn;
+    rental.returnCar(carToReturn - 1);
+
+    rental.listAvailableCars();
+
+    return 0;
+}
+
 
 
 
