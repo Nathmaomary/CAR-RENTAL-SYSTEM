@@ -253,6 +253,31 @@ void Rental::returnCar(int carIndex) {
         std::cout << "This car was not rented!" << std::endl;
     }
 }
+// Rental.h
+#ifndef RENTAL_H
+#define RENTAL_H
+
+#include "Car.h"
+#include <string>
+#include <vector>
+
+class Rental {
+private:
+    std::vector<Car> cars;
+    std::string customerName;
+    double rentalRatePerDay; // Rate per day for car rental
+
+public:
+    Rental(std::string customerName, double rentalRatePerDay);
+    void addCarToInventory(const Car& car);
+    void rentCar(int carIndex, int rentalDays);
+    void returnCar(int carIndex);
+    void listAvailableCars() const;
+    double calculateRentalCost(int rentalDays) const;
+};
+
+#endif
+
 
 
 
