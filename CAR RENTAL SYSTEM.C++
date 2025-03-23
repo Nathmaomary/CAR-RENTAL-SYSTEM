@@ -93,6 +93,25 @@ void Rental::listAvailableCars() const {
         }
     }
 }
+// main.cpp
+#include <iostream>
+#include "Car.h"
+#include "Rental.h"
+
+int main() {
+    Rental rental("John Doe");
+
+    Car car1("Toyota", "Corolla", 2020);
+    Car car2("Honda", "Civic", 2021);
+
+    rental.addCarToInventory(car1);
+    rental.addCarToInventory(car2);
+
+    rental.listAvailableCars();
+
+    return 0;
+}
+
 
 
 
