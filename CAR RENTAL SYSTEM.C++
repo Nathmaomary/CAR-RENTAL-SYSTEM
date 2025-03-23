@@ -579,6 +579,38 @@ int main() {
 
     return 0;
 }
+// test.cpp
+#include <iostream>
+#include "Car.h"
+#include "Rental.h"
+
+void testCarClass() {
+    Car car("Toyota", "Corolla", 2020);
+    assert(car.getMake() == "Toyota");
+    assert(car.getModel() == "Corolla");
+    assert(car.getYear() == 2020);
+    assert(car.getAvailability() == true);
+    car.setAvailability(false);
+    assert(car.getAvailability() == false);
+    std::cout << "Car class tests passed!\n";
+}
+
+void testRentalClass() {
+    Rental rental("John Doe", 20.0);
+    Car car("Toyota", "Corolla", 2020);
+    rental.addCarToInventory(car);
+    rental.listAvailableCars();
+    rental.rentCar(0, 3);
+    rental.returnCar(0);
+    std::cout << "Rental class tests passed!\n";
+}
+
+int main() {
+    testCarClass();
+    testRentalClass();
+    return 0;
+}
+
 
 
 
