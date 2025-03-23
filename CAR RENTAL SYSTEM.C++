@@ -479,6 +479,32 @@ void Rental::returnCar(int carIndex) {
         std::cout << "This car was not rented!\n";
     }
 }
+// Rental.cpp
+#include "Rental.h"
+#include <iostream>
+#include <iomanip>
+
+double Rental::calculateRentalCost(int rentalDays) const {
+    double totalCost = rentalDays * rentalRatePerDay;
+    return totalCost;
+}
+
+void Rental::rentCar(int carIndex, int rentalDays) {
+    if (carIndex < 0 || carIndex >= cars.size()) {
+        std::cout << "Invalid car number!\n";
+        return;
+    }
+    if (cars[carIndex].getAvailability()) {
+        cars[carIndex].setAvailability(false);
+        std::cout << "Car rented for " << rentalDays << " days.\n";
+        std::cout << "Total rental cost: $"
+                  << std::fixed << std::setprecision(2) 
+                  << calculateRentalCost(rentalDays) << std::endl;
+    } else {
+        std::cout << "Car is not available for rent!\n";
+    }
+}
+
 
 
 
