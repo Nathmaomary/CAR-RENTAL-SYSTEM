@@ -224,6 +224,36 @@ int main() {
 
     return 0;
 }
+// Rental.cpp
+#include "Rental.h"
+#include <iostream>
+
+void Rental::rentCar(int carIndex) {
+    if (carIndex < 0 || carIndex >= cars.size()) {
+        std::cout << "Invalid car number!" << std::endl;
+        return;
+    }
+    if (cars[carIndex].getAvailability()) {
+        cars[carIndex].setAvailability(false);
+        std::cout << "Car rented successfully!" << std::endl;
+    } else {
+        std::cout << "Car is not available for rent!" << std::endl;
+    }
+}
+
+void Rental::returnCar(int carIndex) {
+    if (carIndex < 0 || carIndex >= cars.size()) {
+        std::cout << "Invalid car number!" << std::endl;
+        return;
+    }
+    if (!cars[carIndex].getAvailability()) {
+        cars[carIndex].setAvailability(true);
+        std::cout << "Car returned successfully!" << std::endl;
+    } else {
+        std::cout << "This car was not rented!" << std::endl;
+    }
+}
+
 
 
 
