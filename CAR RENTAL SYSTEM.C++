@@ -168,6 +168,63 @@ int main() {
 
     return 0;
 }
+// main.cpp
+#include <iostream>
+#include "Car.h"
+#include "Rental.h"
+
+void displayMenu() {
+    std::cout << "\nCar Rental System\n";
+    std::cout << "1. List available cars\n";
+    std::cout << "2. Rent a car\n";
+    std::cout << "3. Return a car\n";
+    std::cout << "4. Exit\n";
+}
+
+int main() {
+    Rental rental("John Doe");
+
+    Car car1("Toyota", "Corolla", 2020);
+    Car car2("Honda", "Civic", 2021);
+
+    rental.addCarToInventory(car1);
+    rental.addCarToInventory(car2);
+
+    int choice;
+    do {
+        displayMenu();
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        switch(choice) {
+            case 1:
+                rental.listAvailableCars();
+                break;
+            case 2: {
+                int carToRent;
+                std::cout << "Enter the car number to rent: ";
+                std::cin >> carToRent;
+                rental.rentCar(carToRent - 1);
+                break;
+            }
+            case 3: {
+                int carToReturn;
+                std::cout << "Enter the car number to return: ";
+                std::cin >> carToReturn;
+                rental.returnCar(carToReturn - 1);
+                break;
+            }
+            case 4:
+                std::cout << "Exiting system...\n";
+                break;
+            default:
+                std::cout << "Invalid choice, please try again.\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
 
 
 
