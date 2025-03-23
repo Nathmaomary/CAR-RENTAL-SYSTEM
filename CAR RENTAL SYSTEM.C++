@@ -55,5 +55,46 @@ bool Car::getAvailability() const {
 void Car::setAvailability(bool availability) {
     isAvailable = availability;
 }
+// Rental.cpp
+#include "Rental.h"
+#include <iostream>
+
+Rental::Rental(std::string customerName) : customerName(customerName) {}
+
+void Rental::addCarToInventory(const Car& car) {
+    cars.push_back(car);
+}
+
+void Rental::rentCar(int carIndex) {
+    if (cars[carIndex].getAvailability()) {
+        cars[carIndex].setAvailability(false);
+        std::cout << "Car rented successfully!" << std::endl;
+    } else {
+        std::cout << "Car is not available for rent!" << std::endl;
+    }
+}
+
+void Rental::returnCar(int carIndex) {
+    if (!cars[carIndex].getAvailability()) {
+        cars[carIndex].setAvailability(true);
+        std::cout << "Car returned successfully!" << std::endl;
+    } else {
+        std::cout << "This car was not rented!" << std::endl;
+    }
+}
+
+void Rental::listAvailableCars() const {
+    std::cout << "Available cars: " << std::endl;
+    for (size_t i = 0; i < cars.size(); i++) {
+        if (cars[i].getAvailability()) {
+            std::cout << i + 1 << ". " << cars[i].getMake() << " " 
+                      << cars[i].getModel() << " (" 
+                      << cars[i].getYear() << ")" << std::endl;
+        }
+    }
+}
+
+
+
 
 
