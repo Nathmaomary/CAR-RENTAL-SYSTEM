@@ -504,6 +504,82 @@ void Rental::rentCar(int carIndex, int rentalDays) {
         std::cout << "Car is not available for rent!\n";
     }
 }
+// main.cpp
+#include <iostream>
+#include "Car.h"
+#include "Rental.h"
+#include <vector>
+
+void displayMenu() {
+    std::cout << "\nCar Rental System\n";
+    std::cout << "1. List available cars\n";
+    std::cout << "2. Rent a car\n";
+    std::cout << "3. Return a car\n";
+    std::cout << "4. Exit\n";
+}
+
+int main() {
+    std::vector<Rental> rentals;
+    std::string customerName;
+    double rentalRate = 20.0; // fixed rental rate
+
+    // Allow multiple customers
+    std::cout << "Enter customer name: ";
+    std::cin >> customerName;
+
+    Rental rental(customerName, rentalRate);
+    rentals.push_back(rental);
+
+    Car car1("Toyota", "Corolla", 2020);
+    Car car2("Honda", "Civic", 2021);
+
+    rentals[0].addCarToInventory(car1);
+    rentals[0].addCarToInventory(car2);
+
+    int choice;
+    do {
+        displayMenu();
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a valid option.\n";
+            continue;
+        }
+
+        switch(choice) {
+            case 1:
+                rentals[0].listAvailableCars();
+                break;
+            case 2: {
+                int carToRent, rentalDays;
+                std::cout << "Enter the car number to rent: ";
+                std::cin >> carToRent;
+                std::cout << "Enter rental days: ";
+                std::cin >> rentalDays;
+                rentals[0].rentCar(carToRent - 1, rentalDays);
+                break;
+            }
+            case 3: {
+                int carToReturn;
+                std::cout << "Enter the car number to return: ";
+                std::cin >> carToReturn;
+                rentals[0].returnCar(carToReturn - 1);
+                break;
+            }
+            case 4:
+                std::cout << "Exiting system...\n";
+                break;
+            default:
+                std::cout << "Invalid choice! Please enter a valid option (1-4).\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
 
 
 
